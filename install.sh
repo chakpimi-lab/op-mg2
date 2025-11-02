@@ -13,7 +13,7 @@ git clone $REPO_URL "$PROJECT_DIR"
 
 echo "[INFO] Installing OpenVPN WebPanel Manager..."
 apt update -y
-apt install -y python3 python3-venv python3-pip rsync git
+apt install -y python3 python3-venv python3-pip rsync git ufw
 
 cd "$PROJECT_DIR"
 python3 -m venv "$VENV_DIR"
@@ -48,10 +48,7 @@ if command -v ufw >/dev/null 2>&1; then
 fi
 
 echo "[SUCCESS] Installed successfully!"
-echo "Access panel: http://$(hostname -I | awk '{print $1}'):${PORT}"
+echo "------------------------------------"
+echo "Access panel at: http://$(hostname -I | awk '{print $1}'):${PORT}"
 echo "Default credentials: admin / admin123"
-
-fi
-echo "[SUCCESS] Installed successfully!"
-echo "Access panel: http://$(hostname -I | awk '{print $1}'):${PORT}"
-echo "Default credentials: admin / admin123"
+echo "------------------------------------"
