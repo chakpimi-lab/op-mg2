@@ -16,6 +16,7 @@ apt update -y
 apt install -y python3 python3-venv python3-pip rsync git ufw
 
 cd "$PROJECT_DIR"
+
 python3 -m venv "$VENV_DIR"
 "$VENV_DIR/bin/pip" install --upgrade pip >/dev/null 2>&1 || true
 "$VENV_DIR/bin/pip" install -r "$PROJECT_DIR/requirements.txt" >/dev/null 2>&1
@@ -43,7 +44,8 @@ EOF
 systemctl daemon-reload
 systemctl enable --now ${SERVICE_NAME}.service
 
-if command -v ufw >/dev/null 2>&1; then
+if command -v ufw >/dev/null 2>&1
+then
   ufw allow ${PORT}/tcp || true
 fi
 
